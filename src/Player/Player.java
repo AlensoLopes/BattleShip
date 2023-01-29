@@ -1,10 +1,9 @@
 package Player;
 
-import java.util.Scanner;
 
 public abstract class Player {
 
-    protected String playerName;
+    protected static String playerName;
     private int nbTotalShoot;
     private int nbSuccessShoot;
     private int nbShipAlive;
@@ -12,8 +11,8 @@ public abstract class Player {
 
     protected abstract void setPlayerName();
 
-    protected String getPlayerName(){
-        return this.playerName;
+    public static String getPlayerName(){
+        return playerName;
     }
 
     protected void incrementNbTotalShoot(){
@@ -21,22 +20,12 @@ public abstract class Player {
     }
 
     protected void incrementNbSuccessShoot(){
-            this.nbSuccessShoot++;
-        }
+        this.nbSuccessShoot++;
+    }
 
 
     protected abstract boolean shoot(String[][] array);
     protected abstract boolean shoot(int x, int y, String[][] array);
-
-    Scanner input = new Scanner(System.in);
-    protected int reqCoordinateX(){
-        System.out.print("First select x coordinate: ");
-        return input.nextInt();
-    }
-    protected int reqCoordinateY(){
-        System.out.print("First select y coordinate: ");
-        return input.nextInt();
-    }
 
     public int getNbShipAlive() {
         return nbShipAlive;

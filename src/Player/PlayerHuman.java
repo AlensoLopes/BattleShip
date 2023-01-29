@@ -2,6 +2,7 @@ package Player;
 
 import Board.CreateBoard;
 import Board.DisplayBoard;
+import Listeners.InputUser;
 import Ship.Armoured;
 import Ship.Cruiser;
 import Ship.Submarine;
@@ -25,12 +26,12 @@ public class PlayerHuman extends Player{
         name = input.nextLine();
 
         System.out.println("Your username is now " + name);
-        this.playerName = name;
+        playerName = name;
     }
 
     @Override
     public boolean shoot(String[][] array) {
-        return shoot(reqCoordinateX(), reqCoordinateY(), array);
+        return shoot(InputUser.reqCoordinateX(), InputUser.reqCoordinateY(), array);
     }
 
     @Override

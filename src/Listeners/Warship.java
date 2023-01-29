@@ -22,8 +22,8 @@ public class Warship extends DisplayBoard{
 
             if(!(tmp.equals("A"))) sens = input.processInputAxis();
 
-            int x = input.reqCoordinateX();
-            int y = input.reqCoordinateY();
+            int x = InputUser.reqCoordinateX();
+            int y = InputUser.reqCoordinateY();
             switch (tmp){
                 case "A" -> {
                     placeSmallShip(x, y, s, array);
@@ -49,13 +49,11 @@ public class Warship extends DisplayBoard{
     }
 
     public void placeSmallShip(int x, int y, Submarine s, String[][] array) {
-        if(lock.contains("S")){
-            shipLock();
-            return;
-        }
+        String type = "S";
+        if (lockCheckWithType(type)) return;
         if(!((x >= 0 && x < DIM) && (y >= 0 && y < DIM) &&
                 (Objects.equals(array[x][y], " ")))){
-            errorPlaceShip(x, y, array);
+            errorPlaceShip(x, y, array, type);
             return;
         }
         array[x][y] = s.style;
@@ -63,70 +61,69 @@ public class Warship extends DisplayBoard{
     }
 
     public void placeMediumShip(int x, int y, String sens, Torpedo t, String[][] array){
-        if(lock.contains("M")){
-            shipLock();
-            return;
-        }
-        boolean e = checkError(x, y, t.size, sens, array);
-        place_check_vertical(x, y, sens, t.size, e, t.style, array);
-        place_check_horizontal(x, y, sens, t.size, e, t.style, array);
-        displayBoard(array);
+        String type = "M";
+        callPlaceShip(x, y, t.getSize(), sens, t.getStyle(), array, type);
     }
 
     public void placeLargeShip(int x, int y, String sens,
-                                Cruiser c, String[][] array){
-        if(lock.contains("L")){
-            shipLock();
-            return;
-        }
-        boolean e = checkError(x, y, c.size, sens, array);
-        place_check_vertical(x, y, sens, c.size, e, c.style, array);
-        place_check_horizontal(x, y, sens, c.size, e, c.style, array);
-        displayBoard(array);
+                               Cruiser c, String[][] array){
+        String type = "L";
+        callPlaceShip(x, y, c.getSize(), sens, c.getStyle(), array, type);
     }
 
     public void placeLargiestShip(int x, int y, String sens,
-                                   Armoured a, String[][] array){
-        if(lock.contains("La")){
-            shipLock();
-            return;
-        }
-        boolean e = checkError(x, y, a.size, sens, array);
-        place_check_vertical(x, y, sens, a.size, e, a.style, array);
-        place_check_horizontal(x, y, sens, a.size, e, a.style, array);
-        displayBoard(array);
+                                  Armoured a, String[][] array){
+        String type = "La";
+        callPlaceShip(x, y, a.getSize(), sens, a.getStyle(), array, type);
     }
 
+    private void callPlaceShip(int x, int y, int size, String sens,
+                               String style, String[][] array, String type){
+        if (lockCheckWithType(type)) return;
+        boolean e = checkError(x, y, size, sens, array);
+        place_check_vertical(x, y, sens, size, e, style, array, type);
+        place_check_horizontal(x, y, sens, size, e, style, array, type);
+        displayBoard(array);
+    }
 
     private void shipLock(){
         System.out.println("You already place that type of ship !");
         nb_ship++;
     }
 
+    private boolean lockCheckWithType(String type) {
+        if(lock.contains(type)){
+            shipLock();
+            return true;
+        }
+        return false;
+    }
+
     private void place_check_horizontal(int x, int y, String sens, int size, boolean e,
-                                        String style, String[][]array) {
+                                        String style, String[][]array, String type) {
         if(!sens.equals("H")) return;
         for (int i = 0; i < size; i++) {
             if(e){
                 array[x][y +i] = style;
-            }else errorPlaceShip(x, y, array);
+            }else errorPlaceShip(x, y, array, type);
         }
     }
 
     private void place_check_vertical(int x, int y, String sens, int size, boolean e,
-                                      String style, String[][] array) {
+                                      String style, String[][] array, String type) {
 
         if(!sens.equals("V")) return;
         for (int i = 0; i < size; i++) {
             if(e){
                 array[x + i][y] = style;
-            } else errorPlaceShip(x, y, array);
+            } else errorPlaceShip(x, y, array, type);
         }
     }
 
-    private void errorPlaceShip(int x, int y, String[][] array){
+    private void errorPlaceShip(int x, int y, String[][] array, String type){
         if((x >= 0 && x < DIM) && (y >= 0 && y < DIM) && (!Objects.equals(array[x][y], " "))){
             System.out.println("You can't place a same ship on the same location !");
+            lock.remove(type);
         }else if((x < 0 || x >=DIM) || (y < 0 || y >= DIM)) {
             System.out.println("You can't place ship outside the board");
         }
