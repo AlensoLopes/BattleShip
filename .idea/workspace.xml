@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e90b723-7f65-4654-add8-cb3a7ea50de2" name="Changes" comment="">
+    <list default="true" id="7e90b723-7f65-4654-add8-cb3a7ea50de2" name="Changes" comment="Some little changes">
+      <change afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Win/Win.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Listeners/InputUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Listeners/InputUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Listeners/Warship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Listeners/Warship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/PlayerHuman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/PlayerHuman.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Player/Player.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -26,6 +52,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "C:/Kotlin/Java/BattlesShip",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -40,8 +68,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1675025023927</updated>
-      <workItem from="1675025025204" duration="333000" />
+      <workItem from="1675025025204" duration="804000" />
+      <workItem from="1675025845781" duration="19000" />
+      <workItem from="1675091176567" duration="3634000" />
+      <workItem from="1675152150794" duration="232000" />
+      <workItem from="1675181728082" duration="7272000" />
     </task>
+    <task id="LOCAL-00001" summary="Some little changes">
+      <created>1675025602368</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1675025602368</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -57,5 +97,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Some little changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some little changes" />
   </component>
 </project>

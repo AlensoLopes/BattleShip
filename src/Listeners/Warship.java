@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Warship extends DisplayBoard{
     protected int size;
     protected String style;
-    public static int nb_ship = 4;
+    public static int nb_ship = 1;
     private final ArrayList<String> lock = new ArrayList<>();
     public void deployShip(Submarine s, Torpedo t,
                            Cruiser c, Armoured a, String[][] array){
@@ -22,23 +22,23 @@ public class Warship extends DisplayBoard{
 
             if(!(tmp.equals("A"))) sens = input.processInputAxis();
 
-            int x = InputUser.reqCoordinateX();
-            int y = InputUser.reqCoordinateY();
+            int column = InputUser.reqCoordinateColumn();
+            int line = InputUser.reqCoordinateLine();
             switch (tmp){
                 case "A" -> {
-                    placeSmallShip(x, y, s, array);
+                    placeSmallShip(line, column, s, array);
                     lock.add("S");
                 }
                 case "B" -> {
-                    placeMediumShip(x, y, sens, t, array);
+                    placeMediumShip(line, column, sens, t, array);
                     lock.add("M");
                 }
                 case "C" ->{
-                    placeLargeShip(x, y, sens, c, array);
+                    placeLargeShip(line, column, sens, c, array);
                     lock.add("L");
                 }
                 case "D" -> {
-                    placeLargiestShip(x, y, sens, a, array);
+                    placeLargiestShip(line, column, sens, a, array);
                     lock.add("La");
                 }
                 default -> {
@@ -57,7 +57,7 @@ public class Warship extends DisplayBoard{
             return;
         }
         array[x][y] = s.style;
-        displayBoard(array);
+        /*displayBoard(array);*/
     }
 
     public void placeMediumShip(int x, int y, String sens, Torpedo t, String[][] array){
@@ -83,7 +83,7 @@ public class Warship extends DisplayBoard{
         boolean e = checkError(x, y, size, sens, array);
         place_check_vertical(x, y, sens, size, e, style, array, type);
         place_check_horizontal(x, y, sens, size, e, style, array, type);
-        displayBoard(array);
+        /*displayBoard(array);*/
     }
 
     private void shipLock(){

@@ -1,7 +1,6 @@
 package Player;
 
 import Board.CreateBoard;
-import Board.DisplayBoard;
 import Listeners.InputUser;
 import Ship.Armoured;
 import Ship.Cruiser;
@@ -14,12 +13,10 @@ import java.util.Scanner;
 public class PlayerHuman extends Player{
 
     public PlayerHuman() {
-        setNbShipAlive(5);
-        setPlayerName();
     }
 
     @Override
-    protected void setPlayerName() {
+    public void setPlayerName() {
         String name;
         Scanner input = new Scanner(System.in);
         System.out.println("Please enter a username : ");
@@ -29,22 +26,37 @@ public class PlayerHuman extends Player{
         playerName = name;
     }
 
+    public String getPlayerName(){
+        return playerName;
+    }
+
+    public static int getNbShipAlive(String[][] board) {
+        int nbShipAlive = 0;
+        for (int i = 0; i < CreateBoard.DIM; i++) {
+            for (int j = 0; j < CreateBoard.DIM; j++) {
+                if(!board[i][j].equals(" ")) nbShipAlive++;
+            }
+        }
+        return nbShipAlive;
+    }
+
     @Override
     public boolean shoot(String[][] array) {
-        return shoot(InputUser.reqCoordinateX(), InputUser.reqCoordinateY(), array);
+        return shoot(InputUser.reqCoordinateLine(), InputUser.reqCoordinateColumn(), array);
     }
 
     @Override
     public boolean shoot(int x, int y, String[][] array) {
         incrementNbTotalShoot();
-        return checkCoordAndHit(array, x, y);
+        return checkCoordAndHit(array, x, y, false);
     }
 
-    protected boolean checkCoordAndHit(String[][] array, int x, int y) {
+    protected static boolean checkCoordAndHit(String[][] array, int x, int y, boolean bot) {
         if(!(x >= 0 && x < CreateBoard.DIM) && (y>= 0 && y<CreateBoard.DIM)) return false;
 
         if(Objects.equals(array[x][y], " ")){
-            System.out.println("No ship here !");
+            if(!bot) System.out.println("Your shoot failed !");
+            else System.out.println("The bot failed !");
             return false;
         }
         hitSmallBoat(x, y, array);
@@ -55,64 +67,62 @@ public class PlayerHuman extends Player{
         return true;
     }
 
-    private void hitSmallBoat(int x, int y, String[][] array){
+    private static void hitSmallBoat(int x, int y, String[][] array){
         if(!(array[x][y].equals(new Submarine().getStyle()))) return;
         destroyShipV(x, y, array, new Submarine().getSize());
-        new DisplayBoard().displayBoard(array);
     }
 
 
-    private void hitMediumBoat(int x, int y, String[][] array) {
+    private static void hitMediumBoat(int x, int y, String[][] array) {
         Torpedo t = new Torpedo();
         checkAndDestroyV(x, y, array, t.getStyle(), t.getSize());
         checkAndDestroyH(x, y, array, t.getStyle(), t.getSize());
-        new DisplayBoard().displayBoard(array);
     }
 
-    private void hitLargeBoat(int x, int y, String[][] array){
+    private static void hitLargeBoat(int x, int y, String[][] array){
         Cruiser c = new Cruiser();
         checkAndDestroyV(x, y, array, c.getStyle(), c.getSize());
         checkAndDestroyH(x, y, array, c.getStyle(), c.getSize());
-        new DisplayBoard().displayBoard(array);
     }
 
-    private void hitLargiestBoat(int x, int y, String[][] array){
+    private static void hitLargiestBoat(int x, int y, String[][] array){
         Armoured a = new Armoured();
         checkAndDestroyV(x, y, array, a.getStyle(), a.getSize());
         checkAndDestroyH(x, y, array, a.getStyle(), a.getSize());
-        new DisplayBoard().displayBoard(array);
     }
-    private void checkAndDestroyV(int x, int y, String[][] array, String style, int size){
+    private static void checkAndDestroyV(int x, int y, String[][] array, String style, int size){
         if(isAxisVertical(x, y, style, array, size)) destroyShipV(x, y, array, size);
     }
-    private void checkAndDestroyH(int x, int y, String[][] array, String style, int size){
+    private static void checkAndDestroyH(int x, int y, String[][] array, String style, int size){
         if(isAxisHorizontal(x, y, style, array, size)) destroyShipH(x, y, array, size);
     }
 
-    private boolean isAxisVertical(int x, int y, String style, String[][]array, int size){
+    private static boolean isAxisVertical(int x, int y, String style, String[][]array, int size){
         int v = 0;
         for (int i = 0; i < size; i++) {
+            if(x+i >= 10) return false;
             if(array[x+i][y].equals(style)){
                 v++;
             }
         }
         return v == size;
     }
-    private boolean isAxisHorizontal(int x, int y, String style, String[][]array, int size){
+    private static boolean isAxisHorizontal(int x, int y, String style, String[][]array, int size){
         int h = 0;
         for (int i = 0; i < size; i++) {
+            if(y+i >= 10) return false;
             if(array[x][y+i].equals(style)){
                 h++;
             }
         }
         return h == size;
     }
-    private void destroyShipV(int x, int y, String[][] array, int size) {
+    private static void destroyShipV(int x, int y, String[][] array, int size) {
         for (int i = 0; i < size; i++) {
             array[x+i][y] = " ";
         }
     }
-    private void destroyShipH(int x, int y, String[][] array, int size){
+    private static void destroyShipH(int x, int y, String[][] array, int size){
         for (int i = 0; i < size; i++) {
             array[x][y+i] = " ";
         }

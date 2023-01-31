@@ -1,7 +1,5 @@
 package Listeners;
 
-import Listeners.Warship;
-
 import java.util.Scanner;
 
 public class InputUser {
@@ -21,12 +19,12 @@ public class InputUser {
         return input.nextInt();
     }
 
-    public static int reqCoordinateX(){
-        System.out.print("Select x coordinate for your ship: ");
+    public static int reqCoordinateColumn(){
+        System.out.print("Select the column for your ship: ");
         return input.nextInt();
     }
-    public static int reqCoordinateY(){
-        System.out.print("Select y coordinate for your ship: ");
+    public static int reqCoordinateLine(){
+        System.out.print("Select the line for your ship: ");
         return input.nextInt();
     }
 }
