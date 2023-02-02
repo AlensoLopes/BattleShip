@@ -42,7 +42,9 @@ public class PlayerHuman extends Player{
 
     @Override
     public boolean shoot(String[][] array) {
-        return shoot(InputUser.reqCoordinateLine(), InputUser.reqCoordinateColumn(), array);
+        int column = InputUser.reqCoordinate("Select the column where to shoot a ship : ");
+        int line = InputUser.reqCoordinate("Select the line where to shoot a ship : ");
+        return shoot(line, column, array);
     }
 
     @Override
@@ -55,8 +57,8 @@ public class PlayerHuman extends Player{
         if(!(x >= 0 && x < CreateBoard.DIM) && (y>= 0 && y<CreateBoard.DIM)) return false;
 
         if(Objects.equals(array[x][y], " ")){
-            if(!bot) System.out.println("Your shoot failed !");
-            else System.out.println("The bot failed !");
+            if(!bot) System.out.println("Player failed !");
+            else System.out.println("Bot failed !");
             return false;
         }
         hitSmallBoat(x, y, array);

@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e90b723-7f65-4654-add8-cb3a7ea50de2" name="Changes" comment="Some little changes">
-      <change afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Win/Win.java" afterDir="false" />
+    <list default="true" id="7e90b723-7f65-4654-add8-cb3a7ea50de2" name="Changes" comment="+ Creation d'un prototype de lancement du jeu&#10;- Bug concernant les coordonnées XY&#10;- Bug concernant le vainqueur&#10;- Bug concernant un placement de bateau invisible&#10;- Bug concernant un placement de bateau hors du plateau&#10;- Bug concernant une double demande du pseudo pour le joueur lors du placement des pièces du bot&#10;+ Ajout de la victoire du jeu&#10;+ Ajout d'un nombre de tour&#10;- Bug concernant un affichage du plateau en boucle&#10;+ Ajout de l'impossibilité de tirer sur son propre bateau">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exception/PlacementException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Listeners/InputUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Listeners/InputUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Listeners/Warship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Listeners/Warship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player/PlayerHuman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/PlayerHuman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Win/Win.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Win/Win.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,19 +44,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "last_opened_file_path": "C:/Kotlin/Java/BattlesShip",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Kotlin/Java/BattlesShip&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -73,6 +70,10 @@
       <workItem from="1675091176567" duration="3634000" />
       <workItem from="1675152150794" duration="232000" />
       <workItem from="1675181728082" duration="7272000" />
+      <workItem from="1675197835289" duration="604000" />
+      <workItem from="1675266298602" duration="2000" />
+      <workItem from="1675279684119" duration="1274000" />
+      <workItem from="1675366994377" duration="2540000" />
     </task>
     <task id="LOCAL-00001" summary="Some little changes">
       <created>1675025602368</created>
@@ -81,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675025602368</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="+ Creation d'un prototype de lancement du jeu&#10;- Bug concernant les coordonnées XY&#10;- Bug concernant le vainqueur&#10;- Bug concernant un placement de bateau invisible&#10;- Bug concernant un placement de bateau hors du plateau&#10;- Bug concernant une double demande du pseudo pour le joueur lors du placement des pièces du bot&#10;+ Ajout de la victoire du jeu&#10;+ Ajout d'un nombre de tour&#10;- Bug concernant un affichage du plateau en boucle&#10;+ Ajout de l'impossibilité de tirer sur son propre bateau">
+      <created>1675198409221</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1675198409221</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +108,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Some little changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some little changes" />
+    <MESSAGE value="+ Creation d'un prototype de lancement du jeu&#10;- Bug concernant les coordonnées XY&#10;- Bug concernant le vainqueur&#10;- Bug concernant un placement de bateau invisible&#10;- Bug concernant un placement de bateau hors du plateau&#10;- Bug concernant une double demande du pseudo pour le joueur lors du placement des pièces du bot&#10;+ Ajout de la victoire du jeu&#10;+ Ajout d'un nombre de tour&#10;- Bug concernant un affichage du plateau en boucle&#10;+ Ajout de l'impossibilité de tirer sur son propre bateau" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Creation d'un prototype de lancement du jeu&#10;- Bug concernant les coordonnées XY&#10;- Bug concernant le vainqueur&#10;- Bug concernant un placement de bateau invisible&#10;- Bug concernant un placement de bateau hors du plateau&#10;- Bug concernant une double demande du pseudo pour le joueur lors du placement des pièces du bot&#10;+ Ajout de la victoire du jeu&#10;+ Ajout d'un nombre de tour&#10;- Bug concernant un affichage du plateau en boucle&#10;+ Ajout de l'impossibilité de tirer sur son propre bateau" />
   </component>
 </project>

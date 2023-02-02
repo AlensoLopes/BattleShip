@@ -22,8 +22,8 @@ public class Warship extends DisplayBoard{
 
             if(!(tmp.equals("A"))) sens = input.processInputAxis();
 
-            int column = InputUser.reqCoordinateColumn();
-            int line = InputUser.reqCoordinateLine();
+            int column = InputUser.reqCoordinate("Select the column where to place your ship : ");
+            int line = InputUser.reqCoordinate("Select the line where to place your ship : ");
             switch (tmp){
                 case "A" -> {
                     placeSmallShip(line, column, s, array);
