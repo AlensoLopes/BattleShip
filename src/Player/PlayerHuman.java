@@ -56,7 +56,7 @@ public class PlayerHuman extends Player{
     protected static boolean checkCoordAndHit(String[][] array, int x, int y, boolean bot) {
         if(!(x >= 0 && x < CreateBoard.DIM) && (y>= 0 && y<CreateBoard.DIM)) return false;
 
-        if(Objects.equals(array[x][y], " ")){
+        if(Objects.equals(array[x][y], " ") || array[x][y].equalsIgnoreCase(" ")){
             if(!bot) System.out.println("Player failed !");
             else System.out.println("Bot failed !");
             return false;

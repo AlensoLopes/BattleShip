@@ -26,14 +26,16 @@ public class Game {
         b.placeShipBot(board_bot);
 
         new DisplayBoard().displayBoard(board);
-        new DisplayBoard().displayBoard(board_bot);
         while(!stop){
             tour++;
             System.out.println("Tour Number " + tour);
             p.shoot(board_bot);
             b.shoot(board);
             if(Win.getWinner(board, board_bot, b, p)) stop = true;
-            if(!stop) new DisplayBoard().displayBoard(board);
+            if(!stop) {
+                new DisplayBoard().displayBoard(board);
+            }
         }
     }
+
 }
