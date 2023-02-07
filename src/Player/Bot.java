@@ -12,8 +12,7 @@ import java.util.*;
 
 public class Bot extends Player {
 
-    public ArrayList<Integer> botHitX = new ArrayList<>();
-    public ArrayList<Integer> botHitY = new ArrayList<>();
+    public ArrayList<Integer> botHit = new ArrayList<>();
 
     public Bot() {
         setPlayerName();
@@ -104,18 +103,27 @@ public class Bot extends Player {
     }
 
     private boolean doNotHitOnTwiceCoord(String[][] array){
-        int x = 0, y = 0;
+        int x = 0, y = 0, coord;
         boolean isGood = true;
         Random r = new Random();
         while(isGood){
-            x = r.nextInt(array.length);
-            y = r.nextInt(array.length);
-            if(!(botHitX.contains(x) && botHitY.contains(y))){
-                botHitX.add(x);
-                botHitY.add(y);
+            coord = r.nextInt(array.length * 10);
+            if(!(coord < 10)){
+                x = getDigitFromNumber(coord, 0, 1);
+                y = getDigitFromNumber(coord, 1, 2);
+            }else{
+                x = 0;
+                y = getDigitFromNumber(coord, 0, 1);
+            }
+            if(!(botHit.contains(coord))){
+                botHit.add(coord);
                 isGood = false;
             }
         }
-        return shoot(x, y ,array);
+        return shoot(x, y, array);
+    }
+
+    private static int getDigitFromNumber(int number, int start, int end){
+        return Integer.parseInt(Integer.toString(number).substring(start, end));
     }
 }
