@@ -120,7 +120,7 @@ public class Bot extends Player {
                 isGood = false;
             }
         }
-        return shoot(x, y ,array);
+        return shoot(x, y, array);
     }
 
     private static int getDigitFromNumber(int number, int start, int end){

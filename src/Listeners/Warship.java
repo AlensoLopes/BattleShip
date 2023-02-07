@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Warship extends DisplayBoard{
     protected int size;
     protected String style;
-    public static int nb_ship = 1;
+    public static int nb_ship = 4;
     private final ArrayList<String> lock = new ArrayList<>();
     public void deployShip(Submarine s, Torpedo t,
                            Cruiser c, Armoured a, String[][] array){
