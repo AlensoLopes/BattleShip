@@ -8,11 +8,13 @@ import Ship.Torpedo;
 import Utils.Utils;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class Bot extends Player {
+
+    public ArrayList<Integer> botHitX = new ArrayList<>();
+    public ArrayList<Integer> botHitY = new ArrayList<>();
+
     public Bot() {
         setPlayerName();
     }
@@ -93,15 +95,27 @@ public class Bot extends Player {
 
     @Override
     public boolean shoot(String[][] array) {
-        int x, y;
-        Random r = new Random();
-        x = r.nextInt(array.length);
-        y = r.nextInt(array.length);
-        return shoot(x, y, array);
+        return doNotHitOnTwiceCoord(array);
     }
 
     @Override
     public boolean shoot(int x, int y, String[][] array) {
         return PlayerHuman.checkCoordAndHit(array, x, y, true);
+    }
+
+    private boolean doNotHitOnTwiceCoord(String[][] array){
+        int x = 0, y = 0;
+        boolean isGood = true;
+        Random r = new Random();
+        while(isGood){
+            x = r.nextInt(array.length);
+            y = r.nextInt(array.length);
+            if(!(botHitX.contains(x) && botHitY.contains(y))){
+                botHitX.add(x);
+                botHitY.add(y);
+                isGood = false;
+            }
+        }
+        return shoot(x, y ,array);
     }
 }

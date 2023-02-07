@@ -24,7 +24,6 @@ public class Game {
         w.deployShip((Submarine) objShip[0], (Torpedo) objShip[1],
                 (Cruiser) objShip[2], (Armoured) objShip[3], board);
         b.placeShipBot(board_bot);
-
         new DisplayBoard().displayBoard(board);
         while(!stop){
             tour++;
