@@ -53,6 +53,7 @@ public class PlayerHuman extends Player{
         return checkCoordAndHit(array, x, y, false);
     }
 
+
     protected static boolean checkCoordAndHit(String[][] array, int x, int y, boolean bot) {
         if(!(x >= 0 && x < CreateBoard.DIM) && (y>= 0 && y<CreateBoard.DIM)) return false;
 
@@ -61,15 +62,49 @@ public class PlayerHuman extends Player{
             else System.out.println("Bot failed !");
             return false;
         }
-        hitSmallBoat(x, y, array);
-        hitMediumBoat(x, y, array);
-        hitLargeBoat(x, y, array);
-        hitLargiestBoat(x, y, array);
+        if(bot) System.out.println("Bot hit !");
+        else System.out.println("Player Hit !");
+        newDestroyBoat(x, y, array, new Submarine().getStyle(), bot);
+        newDestroyBoat(x, y, array, new Torpedo().getStyle(), bot);
+        newDestroyBoat(x, y, array, new Cruiser().getStyle(), bot);
+        newDestroyBoat(x, y, array, new Armoured().getStyle(), bot);
         incrementNbSuccessShoot();
         return true;
     }
 
-    private static void hitSmallBoat(int x, int y, String[][] array){
+
+    private static void newDestroyBoat(int x, int y, String[][] array, String style, boolean bot){
+        if(!array[x][y].equals(style)) return;
+        destroyShip(x, y, array, style);
+        if(numberOfThisShip(array, style) == 0 && !bot){
+            System.out.println("You destroy the entire ship !");
+            return;
+        }else if (numberOfThisShip(array, style) == 0 && bot){
+            System.out.println("Bot destroy the entire ship !");
+            return;
+        }
+        if(!bot) System.out.println("You don't have destroy the entire ship !");
+        else System.out.println("Bot don't have destroy the entire ship !");
+    }
+
+    private static int numberOfThisShip(String[][] array, String style){
+        int number = 0;
+        for (String[] strings : array) {
+            for (int j = 0; j < array.length; j++) {
+                if (strings[j].equals(style)) number++;
+            }
+        }
+        return number;
+    }
+
+    private static void destroyShip(int x, int y, String[][] array, String style){
+        if(array[x][y].equals(style)) array[x][y] = " ";
+    }
+
+
+    /*Below : old version of the destroy ship*/
+
+   /* private static void hitSmallBoat(int x, int y, String[][] array){
         if(!(array[x][y].equals(new Submarine().getStyle()))) return;
         destroyShipV(x, y, array, new Submarine().getSize());
     }
@@ -128,5 +163,5 @@ public class PlayerHuman extends Player{
         for (int i = 0; i < size; i++) {
             array[x][y+i] = " ";
         }
-    }
+    }*/
 }
