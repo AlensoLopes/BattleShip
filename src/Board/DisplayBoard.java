@@ -20,7 +20,7 @@ public class DisplayBoard extends CreateBoard{
         }
         System.out.print("  ");
         for (int i = 0; i < array.length; i++) {
-            System.out.print(i);
+            System.out.print(" " + i);
         }
         System.out.println();
     }
