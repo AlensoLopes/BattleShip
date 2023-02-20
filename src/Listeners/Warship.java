@@ -2,6 +2,7 @@ package Listeners;
 
 import Board.DisplayBoard;
 import Ship.*;
+import Utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -32,6 +33,7 @@ public class Warship extends DisplayBoard{
                 default -> {
                 }
             }
+            Utils.clearConsole();
             new DisplayBoard().displayBoard(array);
             i++;
         }
