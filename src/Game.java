@@ -5,6 +5,8 @@ import Player.*;
 import Ship.*;
 import Win.Win;
 
+import java.io.IOException;
+
 public class Game {
     static PlayerHuman p;
     static Bot b;
@@ -14,7 +16,7 @@ public class Game {
     static String[][] board_bot = new CreateBoard().createBoard();
     static Warship w = new Warship();
 
-    public static void game(){
+    public static void game() {
         System.out.println("BattleShip Game ! ");
         boolean stop = false;
         int tour = 0;
@@ -24,6 +26,7 @@ public class Game {
         w.deployShip((Submarine) objShip[0], (Torpedo) objShip[1],
                 (Cruiser) objShip[2], (Armoured) objShip[3], board);
         b.placeShipBot(board_bot);
+        Utils.Utils.clearConsole();
         new DisplayBoard().displayBoard(board);
         while(!stop){
             tour++;
@@ -31,6 +34,7 @@ public class Game {
             p.shoot(board_bot);
             b.shoot(board);
             if(Win.getWinner(board, board_bot, b, p)) stop = true;
+            Utils.Utils.clearConsole();
             if(!stop) {
                 new DisplayBoard().displayBoard(board);
             }

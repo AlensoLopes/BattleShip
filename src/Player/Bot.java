@@ -24,12 +24,16 @@ public class Bot extends Player {
 
     @Override
     public void setPlayerName() {
-        Random r = new Random();
-        File f = new File("botName/botName.json");
-        ArrayList<String> text = Utils.getTextFromFile(f);
+        try{
+            Random r = new Random();
+            File f = new File("src/botName/botName.json");
+            ArrayList<String> text = Utils.getTextFromFile(f);
 
-        int nb = r.nextInt(text.size());
-        playerName = text.get(nb);
+            int nb = r.nextInt(text.size());
+            playerName = text.get(nb);
+        }catch (Exception e){
+            playerName = "Bot";
+        }
     }
 
     public String getBotName() {
